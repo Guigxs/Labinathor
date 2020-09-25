@@ -1,0 +1,3 @@
+void APP_COMMUNICATION_INITIALIZE(){
+  Serial.begin(9600);
+}
