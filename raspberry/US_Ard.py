@@ -94,9 +94,13 @@ if __name__ == '__main__':
                 print('Droite')
                 arduino.write(b'2')
                 
+            elif (dist_D & dist_A & dist_G < min_dist):
+                print('Demi-tour')
+                arduino.write(b'3')
+               
             else :
                 print('Neutre')            
-                arduino.write(b'3')
+                
                 
             time.sleep(1)
         # Reset by pressing CTRL + C
