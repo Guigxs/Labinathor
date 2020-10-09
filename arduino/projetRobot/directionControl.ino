@@ -26,8 +26,8 @@ void APP_MOTOR_DIRECTION_TASKS(){
     {
       leftMotor.runConfig = RUN_BACKWARD;
       rightMotor.runConfig = RUN_FORWARD;
-      leftMotor.motorSpeed = 40;
-      rightMotor.motorSpeed = 40;
+      leftMotor.motorSpeed = 60;
+      rightMotor.motorSpeed = 60;
 
       leftMotor.state = MOTOR_STATE_CONFIGURE;
       rightMotor.state = MOTOR_STATE_CONFIGURE;
@@ -41,8 +41,8 @@ void APP_MOTOR_DIRECTION_TASKS(){
     {
       leftMotor.runConfig = RUN_FORWARD;
       rightMotor.runConfig = RUN_BACKWARD;
-      leftMotor.motorSpeed = 40;
-      rightMotor.motorSpeed = 40;
+      leftMotor.motorSpeed = 60;  //0-250
+      rightMotor.motorSpeed = 60;
 
       leftMotor.state = MOTOR_STATE_CONFIGURE;
       rightMotor.state = MOTOR_STATE_CONFIGURE;
@@ -51,13 +51,30 @@ void APP_MOTOR_DIRECTION_TASKS(){
       robot.isReady = false;
       robot.performTurn = true;
       break;
+      
     }
     case MOVE_STATE_FORWARD :
     {
       leftMotor.runConfig = RUN_FORWARD;
       rightMotor.runConfig = RUN_FORWARD;
-      leftMotor.motorSpeed = 50;
-      rightMotor.motorSpeed = 50;
+      leftMotor.motorSpeed = 120;
+      rightMotor.motorSpeed = 120;
+
+      leftMotor.state = MOTOR_STATE_CONFIGURE;
+      rightMotor.state = MOTOR_STATE_CONFIGURE;
+
+      robot.state = MOVE_STATE_WAIT;
+      robot.isReady = false;
+      break;
+    }
+
+
+     case MOVE_STATE_BACKWARD :
+    {
+      leftMotor.runConfig = RUN_BACKWARD;
+      rightMotor.runConfig = RUN_BACKWARD;
+      leftMotor.motorSpeed = 120;
+      rightMotor.motorSpeed = 120;
 
       leftMotor.state = MOTOR_STATE_CONFIGURE;
       rightMotor.state = MOTOR_STATE_CONFIGURE;
@@ -69,22 +86,20 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_WAIT:
     {
       if(robot.performTurn){
-        if(robot.leftwhileturns > 10 && robot.rightwhileturns > 10){
+        if(robot.leftwhileturns + robot.rightwhileturns > 18){
           robot.state = MOVE_STATE_STOP;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
           robot.performTurn = false;
-
-
         }
       }
-      else{
+      /*else{
         if(robot.leftwhileturns > 80 && robot.rightwhileturns > 80 ){
           robot.state = MOVE_STATE_STOP;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
         }
-      }
+      }*/
     }
   }
 }

@@ -55,7 +55,7 @@ void timerInterrupt()
 void SPEED_CONTROL_INITILIAZE(){
   //Mise à 5V des deux capteurs
 
-  Timer1.initialize(100000); // set timer for 1sec
+  Timer1.initialize(50000); // set timer for 0.1 sec
   attachInterrupt(0, docountLM, RISING);  // increase counter when speed sensor pin goes High
   attachInterrupt(1, docountRM, RISING);  // increase counter when speed sensor pin goes High
   Timer1.attachInterrupt(timerInterrupt); // enable the timer

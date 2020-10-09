@@ -43,6 +43,7 @@ void APP_LEFT_MOTOR_TASKS(){
   switch(leftMotor.state){
     case MOTOR_STATE_INIT :
     {
+      
       LM->setSpeed(leftMotor.motorSpeed);
       leftMotor.state = MOTOR_STATE_WAIT;
       leftMotorRun();
