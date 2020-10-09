@@ -3,16 +3,17 @@
 ## Small protocol to command the arduino
 
 The raspberry send an integer to the arduino to change the robot direction.
+If no value provided, the arduino go forward.
 
 | Int | Meaning                      |
 | --- | ---------------------------- |
 | -1  | Initialize the communication |
-| 0   | Wait the next command        |
-| 1   | Go forward                   |
-| 2   | Go backward                  |
+| 0   | Stop                         |
+| 1   | Turn right                   |
+| 2   | Go forward                   |
 | 3   | Turn left                    |
-| 4   | Turn right                   |
-| 5   | Stop                         |
+| 4   | Go backward                  |
+| 5   | Wait                         |
 
 
 ## Raspberry script

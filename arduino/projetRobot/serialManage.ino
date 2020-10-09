@@ -52,7 +52,7 @@ void APP_COMMUNICATION_TASKS(){
           serial.state = a;
         }
         else{
-          serial.state = 0;
+          serial.state = 5;
         }
       }
       robot.state = MOVE_STATE_WAIT;
