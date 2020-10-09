@@ -46,14 +46,15 @@ void APP_COMMUNICATION_TASKS(){
       if(Serial.available())
       {
         int a = Serial.parseInt();
-        //Serial.print("Recieved : ");
-        //Serial.println(a);
+        Serial.print("Recieved : ");
+        Serial.println(a);
 
         if (a>=-1 && a<=5){
           serial.state = a;
         }
         else{
           serial.state = 5;
+          Serial.println("Integer does not exist!");
         }
       }
       break;
