@@ -73,9 +73,21 @@ except:
 if __name__ == '__main__': 
     try: 
         while True:
-            dist_G = distance(GPIO_TRIGGER_G, GPIO_ECHO_G)
-            dist_A = distance(GPIO_TRIGGER_A, GPIO_ECHO_A)
-            dist_D = distance(GPIO_TRIGGER_D, GPIO_ECHO_D)
+            x = input("Give me a direction (1, 2, 3, 4, 5)...")
+
+            if (x == 1):
+                arduino.write(b'1')
+            if (x == 2):
+                arduino.write(b'2')
+            if (x == 3):
+                arduino.write(b'3')
+            if (x == 4):
+                arduino.write(b'4')
+
+            # dist_G = distance(GPIO_TRIGGER_G, GPIO_ECHO_G)
+            # dist_A = distance(GPIO_TRIGGER_A, GPIO_ECHO_A)
+            # dist_D = distance(GPIO_TRIGGER_D, GPIO_ECHO_D)
+            
             min_dist = 15
             delay = 3
             
@@ -83,34 +95,34 @@ if __name__ == '__main__':
             #print ("Measured Distance = %.1f cm" % dist)
             
             #En fonction du chemin qui est libre, 0 1 2 3 est envoyé sur l'Arduino
-            if (dist_D > min_dist and dist_A > min_dist and dist_G > min_dist):
-                print('FINIIIII')
-                etat = b'0'
-                arduino.write(etat)
+            # if (dist_D > min_dist and dist_A > min_dist and dist_G > min_dist):
+            #     print('FINIIIII')
+            #     etat = b'0'
+            #     arduino.write(etat)
                 
             
-            elif (dist_D > min_dist):
-                print('Droite')
-                etat = b'1'
-                arduino.write(etat)
-                time.sleep(delay)
+            # elif (dist_D > min_dist):
+            #     print('Droite')
+            #     etat = b'1'
+            #     arduino.write(etat)
+            #     time.sleep(delay)
                 
-            elif (dist_A > min_dist):
-                print('Avant')
-                etat = b'2'
-                arduino.write(etat)
+            # elif (dist_A > min_dist):
+            #     print('Avant')
+            #     etat = b'2'
+            #     arduino.write(etat)
                 
-            elif (dist_G > min_dist):
-                print('Gauche')
-                etat = b'3'
-                arduino.write(etat)
-                time.sleep(delay)
+            # elif (dist_G > min_dist):
+            #     print('Gauche')
+            #     etat = b'3'
+            #     arduino.write(etat)
+            #     time.sleep(delay)
                 
-            else:
-                print('Demi Tour')
-                etat = b'4'
-                arduino.write(etat)
-                time.sleep(delay*1.5)
+            # else:
+            #     print('Demi Tour')
+            #     etat = b'4'
+            #     arduino.write(etat)
+            #     time.sleep(delay*1.5)
                 
             time.sleep(1)
         # Reset by pressing CTRL + C
