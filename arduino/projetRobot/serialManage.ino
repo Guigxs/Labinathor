@@ -7,38 +7,38 @@ void APP_COMMUNICATION_TASKS(){
   switch (serial.state){
     case SERIAL_STATE_INIT:
     {
-      serial.state = SERIAL_STATE_WAIT;
+      serial.state = 5;
       break;
     }
     
     case SERIAL_STATE_TURN_LEFT:
     {
       robot.state = MOVE_STATE_TURN_LEFT;
-      serial.state = SERIAL_STATE_WAIT;
+      serial.state = 5;
       break;
     }
     case SERIAL_STATE_TURN_RIGHT:
     {
       robot.state = MOVE_STATE_TURN_RIGHT;
-      serial.state = SERIAL_STATE_WAIT;
+      serial.state = 5;
       break;
     }
     case SERIAL_STATE_FORWARD:
     {
       robot.state = MOVE_STATE_FORWARD;
-      serial.state = SERIAL_STATE_WAIT;
+      serial.state = 5;
       break;
     }
     case SERIAL_STATE_BACKWARD:
     {
       robot.state = MOVE_STATE_BACKWARD;
-      serial.state = SERIAL_STATE_WAIT;
+      serial.state = 5;
       break;
     }
     case SERIAL_STATE_STOP:
     {
       // TODO: Stop the robot
-      serial.state = 0;
+      serial.state = 5;
       break;
     }
     case SERIAL_STATE_WAIT:
@@ -53,7 +53,7 @@ void APP_COMMUNICATION_TASKS(){
           serial.state = a;
         }
         else{
-          serial.state = 0;
+          serial.state = 5;
         }
       }
       break;
