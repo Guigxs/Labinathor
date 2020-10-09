@@ -23,23 +23,23 @@ void loop() {
   APP_COMMUNICATION_TASKS();
 
   
-    // if(robot.isReady){
-    //   if(myMoves[i] == 1){
-    //      robot.state = MOVE_STATE_FORWARD;
+    if(robot.isReady){
+      if(myMoves[i] == 1){
+         robot.state = MOVE_STATE_FORWARD;
 
-    //   }
-    //   else if(myMoves[i] == 2){
-    //      robot.state = MOVE_STATE_TURN_LEFT;
+      }
+      else if(myMoves[i] == 2){
+         robot.state = MOVE_STATE_TURN_LEFT;
 
-    //   }
-    //   else if(myMoves[i] == 3){
-    //      robot.state = MOVE_STATE_TURN_RIGHT;
-    //   }
+      }
+      else if(myMoves[i] == 3){
+         robot.state = MOVE_STATE_TURN_RIGHT;
+      }
       
-    //   i++;
-    //   if(i == 6){
-    //     i = 0;
-    //   }
-    // }
+      i++;
+      if(i == 6){
+        i = 0;
+      }
+    }
   
 }
