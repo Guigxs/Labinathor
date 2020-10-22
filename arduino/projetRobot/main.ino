@@ -14,7 +14,7 @@ void setup() {
   APP_RIGHT_MOTOR_INITIALIZE();
   APP_MOTOR_DIRECTION_INIT();
 
-  startMillis = millis(); //start the millis function.
+//  startMillis = millis(); //start the millis function.
 }
 
 int i = 0;
@@ -22,7 +22,7 @@ void loop() {
   APP_LEFT_MOTOR_TASKS();
   APP_RIGHT_MOTOR_TASKS();
   APP_MOTOR_DIRECTION_TASKS();
-  APP_COMMUNICATION_TASKS();
+  //APP_COMMUNICATION_TASKS();
 
   
      if(robot.isReady){

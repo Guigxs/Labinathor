@@ -22,33 +22,37 @@ void timerInterrupt()
   Serial.print("Right motor counter: "); 
   Serial.println(counterRM,DEC);*/ 
 
-  if(counterLM > counterRM){
-    if(counterLM > counterRM + 1){
-      leftMotor.motorSpeed -= 2;
-      rightMotor.motorSpeed += 2;
-    }
-    else{
-      leftMotor.motorSpeed -= 1;
-      rightMotor.motorSpeed += 1;
-    }
-  }
+  if(robot.performTurn ==false){
+    
   
-  else if(counterRM > counterLM){
-    if(counterRM > counterLM + 1){
-      leftMotor.motorSpeed += 2;
-      rightMotor.motorSpeed -= 2;
-    }
-    else{
-      leftMotor.motorSpeed += 1;
-      rightMotor.motorSpeed -= 1;
-    }
+      if(counterLM > counterRM){
+        if(counterLM > counterRM + 1){
+          leftMotor.actualMotorSpeed -= 2;
+          rightMotor.actualMotorSpeed += 2;
+        }
+        else{
+          leftMotor.actualMotorSpeed -= 1;
+          rightMotor.actualMotorSpeed += 1;
+        }
+      }
+      
+      else if(counterRM > counterLM){
+        if(counterRM > counterLM + 1){
+          leftMotor.actualMotorSpeed += 2;
+          rightMotor.actualMotorSpeed -= 2;
+        }
+        else{
+          leftMotor.actualMotorSpeed += 1;
+          rightMotor.actualMotorSpeed -= 1;
+        }
+      }
+
   }
-  
   Timer1.attachInterrupt(timerInterrupt);  //enable the timer
   counterLM = 0;  
   counterRM = 0;
-  leftMotor.state = MOTOR_STATE_CONFIGURE;
-  rightMotor.state = MOTOR_STATE_CONFIGURE;
+  //leftMotor.state = MOTOR_STATE_CONFIGURE;
+  //rightMotor.state = MOTOR_STATE_CONFIGURE;
 }
 
 

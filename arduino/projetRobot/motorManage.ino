@@ -3,61 +3,57 @@ void APP_LEFT_MOTOR_INITIALIZE(){
   leftMotor.motorSpeed = 0;
   leftMotor.state = MOTOR_STATE_INIT;
   leftMotor.runConfig = RUN_RELEASE; 
+  leftMotor.startConfigDone = false;
 }
 void APP_RIGHT_MOTOR_INITIALIZE(){
   rightMotor.motorSpeed = 0;
   rightMotor.state = MOTOR_STATE_INIT;
-  rightMotor.runConfig = RUN_RELEASE; 
+  rightMotor.runConfig = RUN_RELEASE;
+  rightMotor.startConfigDone = false;
 }
 
-void leftMotorRun(){
-  switch(leftMotor.runConfig){
-    case RUN_FORWARD :
-      LM->run(FORWARD);
-      break;
-    case RUN_BACKWARD :
-      LM->run(BACKWARD);
-      break;
-    case RUN_RELEASE :
-      LM->run(RELEASE);
-      break;
-  }
-}
-
-void rightMotorRun(){
-  switch(rightMotor.runConfig){
-    case RUN_FORWARD :
-      RM->run(FORWARD);
-      break;
-    case RUN_BACKWARD :
-      RM->run(BACKWARD);
-      break;
-    case RUN_RELEASE :
-      RM->run(RELEASE);
-      break;
-  }
-}
 
 
 void APP_LEFT_MOTOR_TASKS(){
   switch(leftMotor.state){
     case MOTOR_STATE_INIT :
-    {
-      
-      LM->setSpeed(leftMotor.motorSpeed);
+    {      
       leftMotor.state = MOTOR_STATE_WAIT;
-      leftMotorRun();
       break;
     }
+    
     case MOTOR_STATE_WAIT :
     {
       break;
     }
-    case MOTOR_STATE_CONFIGURE :
-      LM->setSpeed(leftMotor.motorSpeed);
-      leftMotor.state = MOTOR_STATE_WAIT;
-      leftMotorRun();
-      break;
+    
+
+    case MOTOR_STATE_FORWARD :
+    {
+      currentMillisL = millis();
+      if(leftMotor.startConfigDone == false){
+        LM->run(FORWARD);
+        startMillisL = millis();
+        leftMotor.startConfigDone = true;
+        leftMotor.actualMotorSpeed = 20;
+        LM->setSpeed(leftMotor.actualMotorSpeed);
+      }
+      
+      else if( (leftMotor.actualMotorSpeed < leftMotor.motorSpeed)  &&  ((currentMillisL - startMillisL) > 350)){       
+        leftMotor.actualMotorSpeed += 2;
+        LM->setSpeed(leftMotor.actualMotorSpeed);
+        startMillisL = millis();
+        }
+      
+      else{
+        LM->setSpeed(leftMotor.actualMotorSpeed);
+      }
+     break;
+    }
+    
+    case MOTOR_STATE_RELEASE : {
+       LM->run(RELEASE);
+    }
   }
 }
 
@@ -67,19 +63,39 @@ void APP_RIGHT_MOTOR_TASKS(){
   switch(rightMotor.state){
     case MOTOR_STATE_INIT :
     {
-      RM->setSpeed(rightMotor.motorSpeed);
       rightMotor.state = MOTOR_STATE_WAIT;
-      rightMotorRun();
       break;
     }
     case MOTOR_STATE_WAIT :
     {
       break;
     }
-    case MOTOR_STATE_CONFIGURE :
-      RM->setSpeed(rightMotor.motorSpeed);
-      rightMotor.state = MOTOR_STATE_WAIT;
-      rightMotorRun();
-      break;
+    
+    case MOTOR_STATE_FORWARD :
+    {
+      currentMillisR = millis();
+      if(rightMotor.startConfigDone == false){
+        RM->run(FORWARD);
+        startMillisR = millis();
+        rightMotor.startConfigDone = true;
+        rightMotor.actualMotorSpeed = 30;
+        RM->setSpeed(rightMotor.actualMotorSpeed);
+      }
+      
+      else if( (rightMotor.actualMotorSpeed < rightMotor.motorSpeed)  &&  ((currentMillisR - startMillisR) > 350)){       
+        rightMotor.actualMotorSpeed += 2;
+        RM->setSpeed(rightMotor.actualMotorSpeed);
+        startMillisR = millis();
+      }
+      else{
+         RM->setSpeed(rightMotor.actualMotorSpeed);
+      }
+        
+     break;
+    }
+
+    case MOTOR_STATE_RELEASE : {
+       RM->run(RELEASE);
+    }
   }
 }
