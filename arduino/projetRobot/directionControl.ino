@@ -10,7 +10,7 @@ void APP_MOTOR_DIRECTION_INIT(){
 void APP_MOTOR_DIRECTION_TASKS(){
   switch(robot.state){
     case MOVE_STATE_INIT:
-    {
+    { 
       robot.state = MOVE_STATE_STOP;
       break;
     }
@@ -50,16 +50,8 @@ void APP_MOTOR_DIRECTION_TASKS(){
 
       else{
         Serial.println("I'm turning left");
-        
-        leftMotor.motorSpeed = 70;
         rightMotor.motorSpeed = 70;
-  
-        //leftMotor.state = MOTOR_STATE_BACKWARD;
-        leftMotor.startConfigDone = false;
-        rightMotor.startConfigDone = false;
-
-
-        rightMotor.state = MOTOR_STATE_FORWARD;
+        rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
       }
@@ -78,16 +70,10 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
       else{
         Serial.println("I'm turning right");
-
         leftMotor.motorSpeed = 70;  //0-->250
-        rightMotor.motorSpeed = 70;
-  
-        leftMotor.state = MOTOR_STATE_FORWARD;
-        //rightMotor.state = MOTOR_STATE_CONFIGURE;
+        leftMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
-        leftMotor.startConfigDone = false;
-        rightMotor.startConfigDone = false;
       }
       break;
     }
@@ -96,19 +82,16 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_FORWARD :
     {
       if(robot.isReady == true){
-        
         Serial.println("I'm moving forward");
-;
         leftMotor.motorSpeed = 120;
         rightMotor.motorSpeed = 120;
-        leftMotor.startConfigDone = false;
-        rightMotor.startConfigDone = false;
-        leftMotor.state = MOTOR_STATE_FORWARD;
-        rightMotor.state = MOTOR_STATE_FORWARD;
+        leftMotor.state = MOTOR_STATE_FORWARD_INIT;
+        rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
       }
+      
       else{
-        if(robot.leftwhileturns + robot.rightwhileturns> 360 /* && robot.rightwhileturns >*/  ){
+        if(robot.leftwhileturns + robot.rightwhileturns> 260){
           robot.state = MOVE_STATE_STOP;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
@@ -119,7 +102,6 @@ void APP_MOTOR_DIRECTION_TASKS(){
     
     case MOVE_STATE_WAIT:
     { 
-      Serial.println("I'm still here");
       break;
     }
   }

@@ -26,29 +26,39 @@ void APP_LEFT_MOTOR_TASKS(){
     {
       break;
     }
-    
 
-    case MOTOR_STATE_FORWARD :
+    case MOTOR_STATE_FORWARD_INIT :
     {
-      currentMillisL = millis();
-      if(leftMotor.startConfigDone == false){
-        LM->run(FORWARD);
         startMillisL = millis();
-        leftMotor.startConfigDone = true;
+        LM->run(FORWARD);
         leftMotor.actualMotorSpeed = 20;
         LM->setSpeed(leftMotor.actualMotorSpeed);
-      }
+        leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+    }
+    
+
+    case MOTOR_STATE_FORWARD_ACCELERATE :
+    {
+      currentMillisL = millis();
       
-      else if( (leftMotor.actualMotorSpeed < leftMotor.motorSpeed)  &&  ((currentMillisL - startMillisL) > 350)){       
-        leftMotor.actualMotorSpeed += 2;
-        LM->setSpeed(leftMotor.actualMotorSpeed);
-        startMillisL = millis();
-        }
+      if(leftMotor.actualMotorSpeed < leftMotor.motorSpeed){
+        if ((currentMillisL - startMillisL) > 350){       
+          leftMotor.actualMotorSpeed += 2;
+          LM->setSpeed(leftMotor.actualMotorSpeed);
+          startMillisL = millis();
+          }
+      }
       
       else{
-        LM->setSpeed(leftMotor.actualMotorSpeed);
+        leftMotor.state = MOTOR_STATE_FORWARD;
       }
-     break;
+      break;
+    }
+
+    case MOTOR_STATE_FORWARD:
+    {
+      LM->setSpeed(leftMotor.actualMotorSpeed);
+      break;
     }
     
     case MOTOR_STATE_RELEASE : {
@@ -70,28 +80,41 @@ void APP_RIGHT_MOTOR_TASKS(){
     {
       break;
     }
-    
-    case MOTOR_STATE_FORWARD :
+
+    case MOTOR_STATE_FORWARD_INIT :
     {
-      currentMillisR = millis();
-      if(rightMotor.startConfigDone == false){
         RM->run(FORWARD);
         startMillisR = millis();
-        rightMotor.startConfigDone = true;
-        rightMotor.actualMotorSpeed = 30;
+        rightMotor.actualMotorSpeed = 28;
         RM->setSpeed(rightMotor.actualMotorSpeed);
+        rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+
+    }
+    
+    case MOTOR_STATE_FORWARD_ACCELERATE :
+    {
+      currentMillisR = millis();
+
+      
+      if (rightMotor.actualMotorSpeed < rightMotor.motorSpeed){
+        if ((currentMillisR - startMillisR) > 350){
+            rightMotor.actualMotorSpeed += 2;
+            RM->setSpeed(rightMotor.actualMotorSpeed);
+            startMillisR = millis();      
+        }
       }
       
-      else if( (rightMotor.actualMotorSpeed < rightMotor.motorSpeed)  &&  ((currentMillisR - startMillisR) > 350)){       
-        rightMotor.actualMotorSpeed += 2;
-        RM->setSpeed(rightMotor.actualMotorSpeed);
-        startMillisR = millis();
-      }
       else{
-         RM->setSpeed(rightMotor.actualMotorSpeed);
+        rightMotor.state = MOTOR_STATE_FORWARD;
       }
         
      break;
+    }
+
+    case MOTOR_STATE_FORWARD:
+    {
+      RM->setSpeed(rightMotor.actualMotorSpeed);
+      break;
     }
 
     case MOTOR_STATE_RELEASE : {
