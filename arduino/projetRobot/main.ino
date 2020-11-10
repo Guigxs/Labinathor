@@ -1,7 +1,7 @@
 
 
 //PARCOURS TEST : 
-int myMoves[] = {1, 2, 2, 1, 3, 3};
+int myMoves[] = {1, 2, 2, 1, 2, 2};
 //int myMoves[] = {2, 2, 2, 2, 2, 2};
 
 

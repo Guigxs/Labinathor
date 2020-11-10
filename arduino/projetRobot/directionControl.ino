@@ -40,7 +40,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_TURN_LEFT :
     {
       if(robot.performTurn){
-        if(robot.rightwhileturns > 23){
+        if(robot.rightwhileturns > 21){
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
           robot.performTurn = false;
@@ -61,7 +61,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_TURN_RIGHT:
     {
       if(robot.performTurn){
-        if(robot.leftwhileturns > 23){
+        if(robot.leftwhileturns > 21){
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
           robot.performTurn = false;
@@ -91,7 +91,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
       
       else{
-        if(robot.leftwhileturns + robot.rightwhileturns> 260){
+        if(robot.leftwhileturns + robot.rightwhileturns> 100){
           robot.state = MOVE_STATE_STOP;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;

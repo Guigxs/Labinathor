@@ -19,7 +19,7 @@ int counterRM = 0;
 // MOTORS CONTROL
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
 Adafruit_DCMotor *LM = AFMS.getMotor(1); 
-Adafruit_DCMotor *RM = AFMS.getMotor(3);
+Adafruit_DCMotor *RM = AFMS.getMotor(2);
 
 typedef enum{
   MOTOR_STATE_INIT,

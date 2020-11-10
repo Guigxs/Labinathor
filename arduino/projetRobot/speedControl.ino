@@ -24,11 +24,14 @@ void timerInterrupt()
 
   if(robot.performTurn ==false){
     
-  
+  Serial.print("------- interrupt: (r,l)");
+  Serial.print(counterRM);
+  Serial.print(counterLM);
+  Serial.println("-------");
       if(counterLM > counterRM){
         if(counterLM > counterRM + 1){
-          leftMotor.actualMotorSpeed -= 2;
-          rightMotor.actualMotorSpeed += 2;
+          leftMotor.actualMotorSpeed -= 3;
+          rightMotor.actualMotorSpeed += 3;
         }
         else{
           leftMotor.actualMotorSpeed -= 1;
@@ -38,8 +41,8 @@ void timerInterrupt()
       
       else if(counterRM > counterLM){
         if(counterRM > counterLM + 1){
-          leftMotor.actualMotorSpeed += 2;
-          rightMotor.actualMotorSpeed -= 2;
+          leftMotor.actualMotorSpeed += 3;
+          rightMotor.actualMotorSpeed -= 3;
         }
         else{
           leftMotor.actualMotorSpeed += 1;
