@@ -3,8 +3,8 @@ import time
 import serial
 
 try:
-    # arduino = serial.Serial('/dev/ttyACM0')  # open serial port linux
-    arduino = serial.Serial('COM8')  # open serial port windows
+    arduino = serial.Serial('/dev/ttyACM0')  # open serial port linux
+   # arduino = serial.Serial('COM8')  # open serial port windows
     print("Conected to: "+ arduino.name)
 
 except serial.serialutil.SerialException:
