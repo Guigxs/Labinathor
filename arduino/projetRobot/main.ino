@@ -1,7 +1,7 @@
 
 
 //PARCOURS TEST : 
-int myMoves[] = {1, 2, 2, 1, 2, 2};
+//int myMoves[] = {1, 1, 3, 3, 1, 1};
 //int myMoves[] = {2, 2, 2, 2, 2, 2};
 
 
@@ -22,15 +22,16 @@ void loop() {
   APP_LEFT_MOTOR_TASKS();
   APP_RIGHT_MOTOR_TASKS();
   APP_MOTOR_DIRECTION_TASKS();
-  //APP_COMMUNICATION_TASKS();
+  APP_COMMUNICATION_TASKS();
 
-  
+  /*
      if(robot.isReady){
        if(myMoves[i] == 1){
           robot.state = MOVE_STATE_FORWARD;
 
        }
        else if(myMoves[i] == 2){
+        
           robot.state = MOVE_STATE_TURN_LEFT;
 
        }
@@ -43,5 +44,6 @@ void loop() {
          i = 0;
       }
      }
+     */
      
 }

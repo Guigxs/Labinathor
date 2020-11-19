@@ -3,11 +3,27 @@ void docountLM()
 {
   counterLM++;
   robot.leftwhileturns++;
+  if (robot.state == 2){
+    if (robot.leftwhileturns == 22){
+      robot.leftwhileturns = 0;
+      robot.state = MOVE_STATE_STOP;
+      robot.performTurn = false;
+    }
+   }
 } 
 void docountRM()  
 {
   counterRM++; 
   robot.rightwhileturns++;
+  if (robot.state == 1){
+    if (robot.rightwhileturns == 20){
+      robot.rightwhileturns = 0;
+      robot.state = MOVE_STATE_STOP;
+      robot.performTurn = false;
+    }
+   }
+   
+  
 }
 
 

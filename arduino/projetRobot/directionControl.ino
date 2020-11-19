@@ -17,7 +17,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
 
     case  MOVE_STATE_STOP :
     {
-      Serial.print("Move state stop");
+      Serial.println("Move state stop");
       currentMillis = millis();
 
       
@@ -29,6 +29,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
 
       else if(currentMillis - startMillis > 670){
+        Serial.println("finish wait stop");
         robot.isReady = true;
         robot.isStopDone = false;
         robot.state = MOVE_STATE_WAIT;
@@ -40,12 +41,16 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_TURN_LEFT :
     {
       if(robot.performTurn){
-        if(robot.rightwhileturns > 21){
+       
+       /*
+        if(robot.rightwhileturns > 22){
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
           robot.performTurn = false;
           robot.state = MOVE_STATE_STOP;
           }
+          
+          */
       }
 
       else{
@@ -54,6 +59,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
         rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
+        robot.rightwhileturns = 0;
       }
       break;
     }
@@ -61,12 +67,14 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_TURN_RIGHT:
     {
       if(robot.performTurn){
+        /*
         if(robot.leftwhileturns > 21){
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
           robot.performTurn = false;
           robot.state = MOVE_STATE_STOP;
           }
+          */
       }
       else{
         Serial.println("I'm turning right");
@@ -102,6 +110,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
     
     case MOVE_STATE_WAIT:
     { 
+      
       break;
     }
   }

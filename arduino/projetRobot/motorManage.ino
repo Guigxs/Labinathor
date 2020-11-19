@@ -13,7 +13,6 @@ void APP_RIGHT_MOTOR_INITIALIZE(){
 }
 
 
-
 void APP_LEFT_MOTOR_TASKS(){
   switch(leftMotor.state){
     case MOTOR_STATE_INIT :
@@ -31,10 +30,11 @@ void APP_LEFT_MOTOR_TASKS(){
     {
         startMillisL = millis();
         LM->run(FORWARD);
-        leftMotor.actualMotorSpeed = 80;
+        //leftMotor.actualMotorSpeed = 80;
+        leftMotor.actualMotorSpeed = 60;
         LM->setSpeed(leftMotor.actualMotorSpeed);
-        //leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
-        leftMotor.state = MOTOR_STATE_FORWARD;
+        leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+        //leftMotor.state = MOTOR_STATE_FORWARD;
         break;
     }
     
@@ -88,10 +88,11 @@ void APP_RIGHT_MOTOR_TASKS(){
     {
         RM->run(FORWARD);
         startMillisR = millis();
-        rightMotor.actualMotorSpeed = 88;
+        //rightMotor.actualMotorSpeed = 90;
+        rightMotor.actualMotorSpeed = 70;
         RM->setSpeed(rightMotor.actualMotorSpeed);
-        //rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
-        leftMotor.state = MOTOR_STATE_FORWARD;
+        rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+        //leftMotor.state = MOTOR_STATE_FORWARD;
         break;
 
     }
