@@ -76,13 +76,13 @@ if __name__ == '__main__':
             dist_G = distance(GPIO_TRIGGER_G, GPIO_ECHO_G)
             dist_A = distance(GPIO_TRIGGER_A, GPIO_ECHO_A)
             dist_D = distance(GPIO_TRIGGER_D, GPIO_ECHO_D)
-            min_dist = 15
+            min_dist = 17
             delay = 3
             
             
             #print ("Measured Distance = %.1f cm" % dist)
             
-            #En fonction du chemin qui est libre, 0 1 2 3 est envoyé sur l'Arduino
+
             if (dist_D > min_dist and dist_A > min_dist and dist_G > min_dist):
                 print('FINIIIII')
                 etat = b'0'
@@ -94,15 +94,21 @@ if __name__ == '__main__':
                 etat = b'1'
                 arduino.write(etat)
                 time.sleep(delay)
+                arduino.write(b'2')
+                time.sleep(delay)
                 
             elif (dist_A > min_dist):
                 print('Avant')
                 etat = b'2'
                 arduino.write(etat)
+                time.sleep(delay)
                 
             elif (dist_G > min_dist):
                 print('Gauche')
                 etat = b'3'
+                arduino.write(etat)
+                time.sleep(delay)
+                etat = b'2'
                 arduino.write(etat)
                 time.sleep(delay)
                 
@@ -112,7 +118,7 @@ if __name__ == '__main__':
                 arduino.write(etat)
                 time.sleep(delay*1.5)
                 
-            time.sleep(1)
+            time.sleep(delay)
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
