@@ -13,6 +13,7 @@ void APP_COMMUNICATION_TASKS(){
     
     case SERIAL_STATE_TURN_LEFT:
     {
+      Serial.println("in left");
       robot.state = MOVE_STATE_TURN_LEFT;
       serial.state = 5;
       break;
