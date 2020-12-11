@@ -31,9 +31,9 @@ void APP_LEFT_MOTOR_TASKS(){
         startMillisL = millis();
         LM->run(FORWARD);
         //leftMotor.actualMotorSpeed = 80;
-        leftMotor.actualMotorSpeed = 60;
+        leftMotor.actualMotorSpeed = 75;
         LM->setSpeed(leftMotor.actualMotorSpeed);
-        leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+        //leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
         //leftMotor.state = MOTOR_STATE_FORWARD;
         break;
     }
@@ -89,9 +89,9 @@ void APP_RIGHT_MOTOR_TASKS(){
         RM->run(FORWARD);
         startMillisR = millis();
         //rightMotor.actualMotorSpeed = 90;
-        rightMotor.actualMotorSpeed = 70;
+        rightMotor.actualMotorSpeed = 65;
         RM->setSpeed(rightMotor.actualMotorSpeed);
-        rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
+        //rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
         //leftMotor.state = MOTOR_STATE_FORWARD;
         break;
 
@@ -101,7 +101,6 @@ void APP_RIGHT_MOTOR_TASKS(){
     {
       currentMillisR = millis();
 
-      
       if (rightMotor.actualMotorSpeed < rightMotor.motorSpeed){
         if ((currentMillisR - startMillisR) > 350){
             rightMotor.actualMotorSpeed += 2;

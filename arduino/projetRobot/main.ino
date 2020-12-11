@@ -24,6 +24,7 @@ void loop() {
   APP_MOTOR_DIRECTION_TASKS();
   APP_COMMUNICATION_TASKS();
 
+  //Serial.println("coucou");
   /*
      if(robot.isReady){
        if(myMoves[i] == 1){
