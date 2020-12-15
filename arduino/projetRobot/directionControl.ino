@@ -102,17 +102,21 @@ void APP_MOTOR_DIRECTION_TASKS(){
       
       else{
         //if(robot.leftwhileturns + robot.rightwhileturns> 100){
-         if(robot.leftwhileturns>25){
-          leftMotor.state = MOTOR_STATE_RELEASE;
+        if(robot.leftwhileturns>25){
+          //leftMotor.state = MOTOR_STATE_RELEASE;
+          robot.state = MOVE_STATE_STOP;
+
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
-        }
+       }
        if(robot.rightwhileturns>25){
-          rightMotor.state = MOTOR_STATE_RELEASE;
+          //rightMotor.state = MOTOR_STATE_RELEASE;
+          robot.state = MOVE_STATE_STOP;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
         }
       }
+      
       break;
     }
     
