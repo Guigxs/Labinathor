@@ -18,6 +18,9 @@ void APP_LEFT_MOTOR_TASKS(){
     case MOTOR_STATE_INIT :
     {      
       leftMotor.state = MOTOR_STATE_WAIT;
+      leftMotor.actualMotorSpeed = 65;
+      rightMotor.actualMotorSpeed = 60;
+
       break;
     }
     
@@ -26,15 +29,17 @@ void APP_LEFT_MOTOR_TASKS(){
       break;
     }
 
+    
     case MOTOR_STATE_FORWARD_INIT :
     {
         startMillisL = millis();
         LM->run(FORWARD);
-        //leftMotor.actualMotorSpeed = 80;
-        leftMotor.actualMotorSpeed = 75;
+        
+        //leftMotor.actualMotorSpeed = 65;
         LM->setSpeed(leftMotor.actualMotorSpeed);
-        //leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
-        //leftMotor.state = MOTOR_STATE_FORWARD;
+        
+        //leftMotor.state = MOTOR_STATE_FORWARD_ACCELERATE; //si on veut passer par une phase d'accélération
+        leftMotor.state = MOTOR_STATE_FORWARD; //si on ne veut pas passer par la phase d'accélération
         break;
     }
     
@@ -86,14 +91,14 @@ void APP_RIGHT_MOTOR_TASKS(){
 
     case MOTOR_STATE_FORWARD_INIT :
     {
+      //Serial.println("Forward right init");
         RM->run(FORWARD);
         startMillisR = millis();
-        //rightMotor.actualMotorSpeed = 90;
-        rightMotor.actualMotorSpeed = 65;
+        
+        //rightMotor.actualMotorSpeed = 60;
         RM->setSpeed(rightMotor.actualMotorSpeed);
-        //rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;
-        //leftMotor.state = MOTOR_STATE_FORWARD;
-        break;
+        //rightMotor.state = MOTOR_STATE_FORWARD_ACCELERATE;//si on veut passer par une phase d'accélération
+        rightMotor.state = MOTOR_STATE_FORWARD; 
 
     }
     
@@ -118,6 +123,7 @@ void APP_RIGHT_MOTOR_TASKS(){
 
     case MOTOR_STATE_FORWARD:
     {
+      //Serial.println("In forward");
       RM->setSpeed(rightMotor.actualMotorSpeed);
       break;
     }

@@ -17,7 +17,8 @@ void APP_MOTOR_DIRECTION_TASKS(){
 
     case  MOVE_STATE_STOP :
     {
-      //Serial.println("Move state stop");
+      //IL FAUT RESTER UN INSTANT DANS LE STOP.
+      
       currentMillis = millis();
 
       
@@ -29,7 +30,6 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
 
       else if(currentMillis - startMillis > 670){
-        //Serial.println("finish wait stop");
         robot.isReady = true;
         robot.isStopDone = false;
         robot.state = MOVE_STATE_WAIT;
@@ -54,8 +54,8 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
 
       else{
-        Serial.println("I'm turning left");
-        rightMotor.motorSpeed = 70;
+        //Serial.println("I'm turning left");
+        //rightMotor.motorSpeed = 70;
         rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
@@ -78,7 +78,7 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
       else{
         //Serial.println("I'm turning right");
-        leftMotor.motorSpeed = 70;  //0-->250
+        //leftMotor.motorSpeed = 70;  //0-->250
         leftMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
@@ -91,28 +91,33 @@ void APP_MOTOR_DIRECTION_TASKS(){
     case MOVE_STATE_FORWARD :
     {
       if(robot.isReady == true){
-        //Serial.println("I'm moving forward");
-        leftMotor.motorSpeed = 120;
-        rightMotor.motorSpeed = 120;
+        
+        //leftMotor.motorSpeed = 120;
+        //rightMotor.motorSpeed = 120;
         leftMotor.state = MOTOR_STATE_FORWARD_INIT;
         rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
+        //robot.state = MOVE_STATE_WAIT;
       }
       
       else{
         //if(robot.leftwhileturns + robot.rightwhileturns> 100){
-         if(robot.leftwhileturns>20){
-          robot.state = MOVE_STATE_STOP;
+         if(robot.leftwhileturns>25){
+          leftMotor.state = MOTOR_STATE_RELEASE;
           robot.leftwhileturns = 0;
           robot.rightwhileturns = 0;
         }
-      } 
+       if(robot.rightwhileturns>25){
+          rightMotor.state = MOTOR_STATE_RELEASE;
+          robot.leftwhileturns = 0;
+          robot.rightwhileturns = 0;
+        }
+      }
       break;
     }
     
     case MOVE_STATE_WAIT:
     { 
-      
       break;
     }
   }

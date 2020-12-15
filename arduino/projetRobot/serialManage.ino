@@ -7,56 +7,61 @@ void APP_COMMUNICATION_TASKS(){
   switch (serial.state){
     case SERIAL_STATE_INIT:
     {
-      serial.state = 5;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     
     case SERIAL_STATE_TURN_LEFT:
     {
-      Serial.println("in left");
+      //Serial.println("Tournons à gauche");
       robot.state = MOVE_STATE_TURN_LEFT;
-      serial.state = 5;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     case SERIAL_STATE_TURN_RIGHT:
     {
+      //Serial.println("Tournons à droite");
       robot.state = MOVE_STATE_TURN_RIGHT;
-      serial.state = 5;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     case SERIAL_STATE_FORWARD:
     {
+      //Serial.println("Allons tout droit");
       robot.state = MOVE_STATE_FORWARD;
-      serial.state = 5;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     case SERIAL_STATE_BACKWARD:
     {
+      //Serial.println("Faisons marche arrière");
       robot.state = MOVE_STATE_BACKWARD;
-      serial.state = 5;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     case SERIAL_STATE_STOP:
     {
-      // TODO: Stop the robot
-      serial.state = 5;
+      //Serial.println("Arrêtons nousssssssssss");
+      robot.state = MOVE_STATE_STOP;
+      serial.state = SERIAL_STATE_WAIT;
       break;
     }
     case SERIAL_STATE_WAIT:
     {
       if(Serial.available())
       {
-        int a = Serial.parseInt();
-        Serial.print("Recieved : ");
-        Serial.println(a);
+        int a = Serial.parseInt(SKIP_WHITESPACE);
+        //Serial.print("Recieved : ");
+        //Serial.println(a);
 
         if (a>=-1 && a<=5){
           serial.state = a;
         }
-        else{
-          serial.state = 5;
-          Serial.println("Integer does not exist!");
-        }
+        /*else{
+          serial.state = SERIAL_STATE_WAIT;
+          //Serial.println("Integer does not exist!");
+        }*/
+
       }
       break;
     }

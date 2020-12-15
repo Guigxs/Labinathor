@@ -18,8 +18,8 @@ int counterRM = 0;
 
 // MOTORS CONTROL
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
-Adafruit_DCMotor *LM = AFMS.getMotor(1); 
-Adafruit_DCMotor *RM = AFMS.getMotor(2);
+Adafruit_DCMotor *LM = AFMS.getMotor(2); 
+Adafruit_DCMotor *RM = AFMS.getMotor(1);
 
 typedef enum{
   MOTOR_STATE_INIT,
@@ -49,13 +49,13 @@ MOTOR_DATA leftMotor;
 MOTOR_DATA rightMotor;
 
 typedef enum{
-  MOVE_STATE_INIT = 0,
-  MOVE_STATE_TURN_LEFT = 1,
-  MOVE_STATE_TURN_RIGHT = 2,
-  MOVE_STATE_FORWARD = 3,
-  MOVE_STATE_STOP = 4,
-  MOVE_STATE_BACKWARD = 5,
-  MOVE_STATE_WAIT =6
+  MOVE_STATE_INIT,
+  MOVE_STATE_TURN_LEFT,
+  MOVE_STATE_TURN_RIGHT,
+  MOVE_STATE_FORWARD,
+  MOVE_STATE_STOP,
+  MOVE_STATE_WAIT,
+  MOVE_STATE_BACKWARD
 }MOVE_STATES;
 
 typedef struct{
