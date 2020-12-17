@@ -54,12 +54,14 @@ void APP_MOTOR_DIRECTION_TASKS(){
       }
 
       else{
+        Serial.println("1");
         //Serial.println("I'm turning left");
         //rightMotor.motorSpeed = 70;
         rightMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
         robot.rightwhileturns = 0;
+        Serial.println("0");
       }
       break;
     }
@@ -77,12 +79,13 @@ void APP_MOTOR_DIRECTION_TASKS(){
           */
       }
       else{
-        //Serial.println("I'm turning right");
+        Serial.println("1");
         //leftMotor.motorSpeed = 70;  //0-->250
         leftMotor.state = MOTOR_STATE_FORWARD_INIT;
         robot.isReady = false;
         robot.performTurn = true;
         robot.leftwhileturns = 0;
+        Serial.println("1");
       }
       break;
     }
@@ -117,6 +120,34 @@ void APP_MOTOR_DIRECTION_TASKS(){
         }
       }
       
+      break;
+    }
+
+    case MOVE_STATE_BACKWARD :
+    {
+      if(robot.performTurn){
+       
+       /*
+        if(robot.rightwhileturns > 22){
+          robot.leftwhileturns = 0;
+          robot.rightwhileturns = 0;
+          robot.performTurn = false;
+          robot.state = MOVE_STATE_STOP;
+          }
+          
+          */
+      }
+
+      else{
+        Serial.println("1");
+        //Serial.println("I'm turning left");
+        //rightMotor.motorSpeed = 70;  
+        rightMotor.state = MOTOR_STATE_FORWARD_INIT;
+        robot.isReady = false;
+        robot.performTurn = true;
+        robot.rightwhileturns = 0;
+        Serial.println("0");
+      }
       break;
     }
     

@@ -13,15 +13,18 @@ void APP_COMMUNICATION_TASKS(){
     
     case SERIAL_STATE_TURN_LEFT:
     {
-      //Serial.println("Tournons à gauche");
+      Serial.println("3");
       robot.state = MOVE_STATE_TURN_LEFT;
+      Serial.println("0");
       serial.state = SERIAL_STATE_WAIT;
+      
       break;
     }
     case SERIAL_STATE_TURN_RIGHT:
     {
-      //Serial.println("Tournons à droite");
+      Serial.println("1");
       robot.state = MOVE_STATE_TURN_RIGHT;
+      Serial.println("0");
       serial.state = SERIAL_STATE_WAIT;
       break;
     }
