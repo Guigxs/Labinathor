@@ -46,4 +46,5 @@ You first need to install the following dependencies in the arduino program :
 
 ## Second Arduino script
 
-Due to Serial port problems, we had to make a second Arduino Script. This script is not optimized but works.
+Due to Serial port problems, we had to make a second Arduino Script :  **Labinathor_V2.ino**.
+This script is not optimized but works.
