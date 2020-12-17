@@ -35,7 +35,7 @@ Run the labyrinth script:
 python raspberry_script.py
 ```
 
-## Arduino script
+## Arduino script (with FSM)
 For the next commands, go to the **arduino** directory.
 
 ### Install dependencies 
@@ -44,3 +44,6 @@ You first need to install the following dependencies in the arduino program :
 - Adafruit Motor Shield V2 Library (version 1.0.10)
 - TimerOne (by Jess Tane, Jérôme Despatis...)
 
+## Second Arduino script
+
+Due to Serial port problems, we had to make a second Arduino Script. This script is not optimized but works.
