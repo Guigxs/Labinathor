@@ -15,8 +15,9 @@ except:
 if __name__ == '__main__': 
     try: 
         while True:
-            x = input("Give me a direction (0, 1, 2, 3, 4, 5): ")
-
+            x = str(input("Give me a direction (0, 1, 2, 3, 4, 5): "))
+#       print("haha")
+#       print(type(x))
             if (x == "0"):
                 print("Writing 0")
                 arduino.write(b'0')
@@ -35,8 +36,8 @@ if __name__ == '__main__':
             else:
                 print("Error {} not in the the protocol!".format(x))
             
-            time.sleep(3)
-            print("\n--Recieved from arduino--\n{}\n-------------------------\n".format(arduino.read(arduino.inWaiting())))
+ #           time.sleep(3)
+  #          print("\n--Recieved from arduino--\n{}\n-------------------------\n".format(arduino.read(arduino.inWaiting())))
         
     except KeyboardInterrupt: # Reset by pressing CTRL + C
         print("Measurement stopped by User")
