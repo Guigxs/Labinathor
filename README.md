@@ -64,4 +64,4 @@ This script is not optimized but is working.
 
 ## PCB
 
-The files used to make the PCB can be found in [PCB Directory](/PCB).
+The files used to make the PCB can be found in [PCB](/PCB) directory.
