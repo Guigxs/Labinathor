@@ -30,7 +30,7 @@ The raspberry send an integer to the arduino to change the robot direction.
 
 
 ## Raspberry script
-For the next commands, go to the [raspberry] (./raspberry) directory.
+For the next commands, go to the [raspberry](/raspberry) directory.
 
 ### Install dependencies 
 
