@@ -11,12 +11,12 @@
   - [Arduino script (with FSM)](#arduino-script-with-fsm)
     - [Install dependencies](#install-dependencies-1)
   - [Second Arduino script](#second-arduino-script)
+  - [PCB](#PCB)
 
 
 ## Small protocol to command the arduino
 
 The raspberry send an integer to the arduino to change the robot direction.
-If no value provided, the arduino go forward.
 
 | Int | Meaning                      |
 | --- | ---------------------------- |
@@ -49,7 +49,7 @@ python main.py
 ```
 
 ## Arduino script (with FSM)
-For the next commands, go to the [arduino](/arduino/v1/projetRobot).
+For the next commands, go to the [arduino](/arduino/v1/projetRobot) directory.
 
 ### Install dependencies 
 
@@ -59,7 +59,7 @@ You first need to install the following dependencies in the arduino program :
 
 ## Second Arduino script
 
-Due to Serial port problems, we had to make a second Arduino Script : [Second Arduino scrit](/arduino/v2).
+Due to problems with the serial communication, we had to make a second Arduino Script : [Second Arduino script](/arduino/v2).
 This script is not optimized but is working.
 
 ## PCB
