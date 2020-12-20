@@ -49,7 +49,7 @@ python main.py
 ```
 
 ## Arduino script (with FSM)
-For the next commands, go to the [arduino] (./arduino/v1/projetRobot).
+For the next commands, go to the [arduino](/arduino/v1/projetRobot).
 
 ### Install dependencies 
 
@@ -59,9 +59,9 @@ You first need to install the following dependencies in the arduino program :
 
 ## Second Arduino script
 
-Due to Serial port problems, we had to make a second Arduino Script : [Second Arduino scrit] (./arduino/v2).
+Due to Serial port problems, we had to make a second Arduino Script : [Second Arduino scrit](/arduino/v2).
 This script is not optimized but is working.
 
 ## PCB
 
-The files used to make the PCB can be found in [PCB Directory] (./PCB).
+The files used to make the PCB can be found in [PCB Directory](/PCB).
