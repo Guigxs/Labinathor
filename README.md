@@ -1,5 +1,18 @@
 # Labyrinth robot project 
 
+## Table of contents
+
+- [Labyrinth robot project](#labyrinth-robot-project)
+  - [Table of contents](#table-of-contents)
+  - [Small protocol to command the arduino](#small-protocol-to-command-the-arduino)
+  - [Raspberry script](#raspberry-script)
+    - [Install dependencies](#install-dependencies)
+    - [Run](#run)
+  - [Arduino script (with FSM)](#arduino-script-with-fsm)
+    - [Install dependencies](#install-dependencies-1)
+  - [Second Arduino script](#second-arduino-script)
+
+
 ## Small protocol to command the arduino
 
 The raspberry send an integer to the arduino to change the robot direction.
@@ -12,7 +25,7 @@ If no value provided, the arduino go forward.
 | 1   | Turn right                   |
 | 2   | Go forward                   |
 | 3   | Turn left                    |
-| 4   | Go backward                  |
+| 4   | Turn backward                |
 | 5   | Wait                         |
 
 
@@ -32,7 +45,7 @@ pip install -r requirements.txt
 
 Run the labyrinth script:
 ```
-python raspberry_script.py
+python main.py
 ```
 
 ## Arduino script (with FSM)
@@ -47,4 +60,4 @@ You first need to install the following dependencies in the arduino program :
 ## Second Arduino script
 
 Due to Serial port problems, we had to make a second Arduino Script :  **Labinathor_V2.ino**.
-This script is not optimized but works.
+This script is not optimized but is working.
