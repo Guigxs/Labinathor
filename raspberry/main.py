@@ -41,15 +41,17 @@ def distance(GPIO_TRIGGER, GPIO_ECHO):
     time.sleep(0.00001)
     GPIO.output(GPIO_TRIGGER, False)
  
-    StartTime = time.time()
-    StopTime = time.time()
- 
+    StartTime = 0
+    StopTime = 0
+    test = 0
     # save StartTime
     while GPIO.input(GPIO_ECHO) == 0:
+        print(GPIO_TRIGGER)
         StartTime = time.time()
  
     # save time of arrival
     while GPIO.input(GPIO_ECHO) == 1:
+        print("1")
         StopTime = time.time()
  
     # time difference between start and arrival
@@ -73,49 +75,63 @@ except:
 if __name__ == '__main__': 
     try: 
         while True:
-            dist_G = distance(GPIO_TRIGGER_G, GPIO_ECHO_G)
-            dist_A = distance(GPIO_TRIGGER_A, GPIO_ECHO_A)
-            dist_D = distance(GPIO_TRIGGER_D, GPIO_ECHO_D)
-            min_dist = 15
-            delay = 3
+            print("im in")
+            bit = arduino.read()
+            print(bit)
+
+            if(bit != ""):
+                
+                print("Bonjour")
+                dist_G = distance(GPIO_TRIGGER_G, GPIO_ECHO_G)
+                dist_A = distance(GPIO_TRIGGER_A, GPIO_ECHO_A)
+                dist_D = distance(GPIO_TRIGGER_D, GPIO_ECHO_D)
+                
+                print ("Measured Distance Gauche = %.1f cm" % dist_G)
+                print ("Measured Distance Avant = %.1f cm" % dist_A)
+                print ("Measured Distance Droite = %.1f cm" % dist_D)
             
-            
-            #print ("Measured Distance = %.1f cm" % dist)
-            
-            #En fonction du chemin qui est libre, 0 1 2 3 est envoyé sur l'Arduino
-            if (dist_D > min_dist and dist_A > min_dist and dist_G > min_dist):
-                print('FINIIIII')
-                etat = b'0'
-                arduino.write(etat)
+                min_dist =20
                 
-            
-            elif (dist_D > min_dist):
-                print('Droite')
-                etat = b'1'
-                arduino.write(etat)
-                time.sleep(delay)
+                if (dist_D > 35  and dist_A > 35 and dist_G > 35):
+                    print('FINIIIII')
+                    arduino.write(b'0')
+                    time.sleep(1)
+    
+                elif (dist_D > min_dist):
+                    
+                    print('Droite')
+                    arduino.write(b'1')
+                    time.sleep(4)
+                        
+                    print('Avant')
+                    arduino.write(b'2')
+                    time.sleep(3)
+                    
+                elif (dist_A > 20):
+                    
+                    print('Avant')
+                    arduino.write(b'2')
+                    time.sleep(3)
                 
-            elif (dist_A > min_dist):
-                print('Avant')
-                etat = b'2'
-                arduino.write(etat)
-                
-            elif (dist_G > min_dist):
-                print('Gauche')
-                etat = b'3'
-                arduino.write(etat)
-                time.sleep(delay)
-                
-            else:
-                print('Demi Tour')
-                etat = b'4'
-                arduino.write(etat)
-                time.sleep(delay*1.5)
-                
-            time.sleep(1)
+                elif (dist_G > min_dist):
+		    
+                    print('Gauche')
+                    arduino.write(b'3')
+                    time.sleep(3)
+                    
+                    print('Avant')
+                    arduino.write(b'2')
+                    time.sleep(2)
+
+                else:
+                                        
+                    print('Demi Tour')
+                    arduino.write(b'4')
+
+		    time.sleep(4)
+
+
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
         print("Measurement stopped by User")
         GPIO.cleanup()
-
-
